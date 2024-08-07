@@ -1,8 +1,9 @@
-/* App.css */
-
+/* Reset and base styles */
 body {
   margin: 0;
   font-family: Arial, sans-serif;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 .app-container {
@@ -40,14 +41,6 @@ footer {
   background: #f8f8f8;
   padding: 10px;
   text-align: center;
-}
-
-/* General styles */
-body {
-  font-family: 'Arial', sans-serif;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
 }
 
 /* Headings */
@@ -111,17 +104,12 @@ span {
 }
 
 /* Navigation */
-nav {
-  background-color: #333;
-  color: #fff;
-  padding: 10px;
-}
-
 nav ul {
   list-style-type: none;
   padding: 0;
   margin: 0;
   display: flex;
+  justify-content: space-around;
 }
 
 nav li {
@@ -137,12 +125,141 @@ nav a:hover {
   text-decoration: underline;
 }
 
-/* Images */
-img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 8px;
-  /* Rounded corners */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  /* Shadow */
+/* CallToAction */
+.cta {
+  text-align: center;
+  padding: 50px 20px;
+  background: #f4f4f4;
+}
+
+.cta h1 {
+  font-size: 2.5em;
+  color: #4CAF50;
+}
+
+.cta p {
+  font-size: 1.2em;
+  color: #666;
+}
+
+.cta button {
+  padding: 10px 20px;
+  background: #4CAF50;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.cta button:hover {
+  background: #388E3C;
+}
+
+/* Specials */
+.specials {
+  padding: 20px;
+}
+
+.specials-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.special-item {
+  flex: 1;
+  margin: 10px;
+  padding: 10px;
+  background: #f8f8f8;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.special-item h3 {
+  color: #4CAF50;
+}
+
+/* Testimonials */
+.testimonials {
+  padding: 20px;
+}
+
+.testimonials-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.testimonial-item {
+  flex: 1;
+  margin: 10px;
+  padding: 10px;
+  background: #f8f8f8;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.testimonial-item img {
+  border-radius: 50%;
+  max-width: 100px;
+}
+
+/* Chicago */
+.chicago {
+  padding: 20px;
+  background: #f4f4f4;
+}
+
+.chicago h2 {
+  color: #4CAF50;
+}
+
+/* BookingPage */
+.booking-page {
+  padding: 20px;
+}
+
+/* General button styles */
+button {
+  padding: 10px 20px;
+  background: #4CAF50;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #388E3C;
+}
+
+/* General input styles */
+input,
+textarea {
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  width: 100%;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .app-container {
+    grid-template-areas:
+      "header"
+      "nav"
+      "main"
+      "footer";
+    grid-template-rows: auto auto 1fr auto;
+  }
+
+  nav ul {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .specials-container,
+  .testimonials-container {
+    flex-direction: column;
+  }
 }
