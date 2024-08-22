@@ -1,18 +1,25 @@
 import React, { useState } from 'react';
 
-const BookingForm = () => {
+const BookingForm = ({ availableTimes = [], dispatch, submitForm }) => {
   const [date, setDate] = useState('');
   const [time, setTime] = useState('');
   const [guests, setGuests] = useState('');
   const [occasion, setOccasion] = useState('');
 
-  const availableTimes = ['17:00', '18:00', '19:00', '20:00', '21:00'];
-
   const handleSubmit = (event) => {
     event.preventDefault();
     const formData = { date, time, guests, occasion };
-    console.log('Reservation Data:', formData);
-    // You can handle the form submission here, e.g., send data to an API
+    submitForm(formData); // Call the submitForm function passed via props
+  };
+
+  const handleDateChange = (e) => {
+    const selectedDate = e.target.value;
+    setDate(selectedDate);
+    if (dispatch) {
+      dispatch({ type: 'UPDATE_TIMES', date: selectedDate });
+    } else {
+      console.error('dispatch is not a function');
+    }
   };
 
   return (
@@ -22,7 +29,7 @@ const BookingForm = () => {
         type="date"
         id="res-date"
         value={date}
-        onChange={(e) => setDate(e.target.value)}
+        onChange={handleDateChange}
       />
 
       <label htmlFor="res-time">Choose time</label>
@@ -31,9 +38,13 @@ const BookingForm = () => {
         value={time}
         onChange={(e) => setTime(e.target.value)}
       >
-        {availableTimes.map((t, index) => (
-          <option key={index} value={t}>{t}</option>
-        ))}
+        {availableTimes.length > 0 ? (
+          availableTimes.map((t, index) => (
+            <option key={index} value={t}>{t}</option>
+          ))
+        ) : (
+          <option>No available times</option>
+        )}
       </select>
 
       <label htmlFor="guests">Number of guests</label>

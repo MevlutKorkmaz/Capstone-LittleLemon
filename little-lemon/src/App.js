@@ -4,8 +4,7 @@ import './App.css';
 import Header from './components/Header';
 import Nav from './components/Nav';
 import Footer from './components/Footer';
-import Homepage from './components/Homepage';
-import BookingPage from './components/BookingPage';
+import Main from './components/Main';
 
 function App() {
   return (
@@ -13,10 +12,7 @@ function App() {
       <div className="app-container">
         <Header />
         <Nav />
-        <Routes>
-          <Route path="/" element={<Homepage />} />
-          <Route path="/booking" element={<BookingPage />} />
-        </Routes>
+        <Main />
         <Footer />
       </div>
     </Router>
