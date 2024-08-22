@@ -8,8 +8,10 @@ const BookingForm = ({ availableTimes = [], dispatch, submitForm }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const formData = { date, time, guests, occasion };
-    submitForm(formData); // Call the submitForm function passed via props
+    if (date && time && guests && occasion) {
+      const formData = { date, time, guests, occasion };
+      submitForm(formData);
+    }
   };
 
   const handleDateChange = (e) => {
@@ -17,10 +19,10 @@ const BookingForm = ({ availableTimes = [], dispatch, submitForm }) => {
     setDate(selectedDate);
     if (dispatch) {
       dispatch({ type: 'UPDATE_TIMES', date: selectedDate });
-    } else {
-      console.error('dispatch is not a function');
     }
   };
+
+  const isFormValid = date && time && guests && occasion;
 
   return (
     <form onSubmit={handleSubmit} style={{ display: 'grid', maxWidth: '200px', gap: '20px' }}>
@@ -30,6 +32,7 @@ const BookingForm = ({ availableTimes = [], dispatch, submitForm }) => {
         id="res-date"
         value={date}
         onChange={handleDateChange}
+        required
       />
 
       <label htmlFor="res-time">Choose time</label>
@@ -37,7 +40,9 @@ const BookingForm = ({ availableTimes = [], dispatch, submitForm }) => {
         id="res-time"
         value={time}
         onChange={(e) => setTime(e.target.value)}
+        required
       >
+        <option value="" disabled>Select a time</option>
         {availableTimes.length > 0 ? (
           availableTimes.map((t, index) => (
             <option key={index} value={t}>{t}</option>
@@ -55,6 +60,7 @@ const BookingForm = ({ availableTimes = [], dispatch, submitForm }) => {
         onChange={(e) => setGuests(e.target.value)}
         min="1"
         max="10"
+        required
       />
 
       <label htmlFor="occasion">Occasion</label>
@@ -62,13 +68,16 @@ const BookingForm = ({ availableTimes = [], dispatch, submitForm }) => {
         id="occasion"
         value={occasion}
         onChange={(e) => setOccasion(e.target.value)}
+        required
       >
-        <option value="">Select an occasion</option>
+        <option value="" disabled>Select an occasion</option>
         <option value="Birthday">Birthday</option>
         <option value="Anniversary">Anniversary</option>
       </select>
 
-      <button type="submit">Submit Reservation</button>
+      <button type="submit" disabled={!isFormValid}>
+        Submit Reservation
+      </button>
     </form>
   );
 };
