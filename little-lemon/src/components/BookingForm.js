@@ -26,54 +26,62 @@ const BookingForm = ({ availableTimes = [], dispatch, submitForm }) => {
 
   return (
     <form onSubmit={handleSubmit} style={{ display: 'grid', maxWidth: '200px', gap: '20px' }}>
-      <label htmlFor="res-date">Choose date</label>
-      <input
-        type="date"
-        id="res-date"
-        value={date}
-        onChange={handleDateChange}
-        required
-      />
+      <div>
+        <label htmlFor="res-date">Choose date</label>
+        <input
+          type="date"
+          id="res-date"
+          value={date}
+          onChange={handleDateChange}
+          required
+        />
+      </div>
 
-      <label htmlFor="res-time">Choose time</label>
-      <select
-        id="res-time"
-        value={time}
-        onChange={(e) => setTime(e.target.value)}
-        required
-      >
-        <option value="" disabled>Select a time</option>
-        {availableTimes.length > 0 ? (
-          availableTimes.map((t, index) => (
-            <option key={index} value={t}>{t}</option>
-          ))
-        ) : (
-          <option>No available times</option>
-        )}
-      </select>
+      <div>
+        <label htmlFor="res-time">Choose time</label>
+        <select
+          id="res-time"
+          value={time}
+          onChange={(e) => setTime(e.target.value)}
+          required
+        >
+          <option value="" disabled>Select a time</option>
+          {availableTimes.length > 0 ? (
+            availableTimes.map((t, index) => (
+              <option key={index} value={t}>{t}</option>
+            ))
+          ) : (
+            <option>No available times</option>
+          )}
+        </select>
+      </div>
 
-      <label htmlFor="guests">Number of guests</label>
-      <input
-        type="number"
-        id="guests"
-        value={guests}
-        onChange={(e) => setGuests(e.target.value)}
-        min="1"
-        max="10"
-        required
-      />
+      <div>
+        <label htmlFor="guests">Number of guests</label>
+        <input
+          type="number"
+          id="guests"
+          value={guests}
+          onChange={(e) => setGuests(e.target.value)}
+          min="1"
+          max="10"
+          required
+        />
+      </div>
 
-      <label htmlFor="occasion">Occasion</label>
-      <select
-        id="occasion"
-        value={occasion}
-        onChange={(e) => setOccasion(e.target.value)}
-        required
-      >
-        <option value="" disabled>Select an occasion</option>
-        <option value="Birthday">Birthday</option>
-        <option value="Anniversary">Anniversary</option>
-      </select>
+      <div>
+        <label htmlFor="occasion">Occasion</label>
+        <select
+          id="occasion"
+          value={occasion}
+          onChange={(e) => setOccasion(e.target.value)}
+          required
+        >
+          <option value="" disabled>Select an occasion</option>
+          <option value="Birthday">Birthday</option>
+          <option value="Anniversary">Anniversary</option>
+        </select>
+      </div>
 
       <button type="submit" disabled={!isFormValid}>
         Submit Reservation
